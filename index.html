@@ -7,48 +7,59 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header class="site-header">
-  <a class="logo" href="#">Nguyễn Trung Kiên</a>
-  <nav class="site-nav">
-    <ul>
-      <li><a href="#about">Giới thiệu</a></li>
-      <li><a href="#projects">Dự án</a></li>
-      <li><a href="#contact">Liên hệ</a></li>
-    </ul>
-  </nav>
-</header>
-<main>
-  <section id="about">
-    <h1>Nguyễn Trung Kiên </h1>
-    <p>Sinh viên Vật lý, thích làm web.</p>
-    <img src="me.jpg" alt="Ảnh chân dung Nguyễn Trung Kiên class="full-width-img">
-  </section>
-  <section id="projects">
-  <h2>Dự án</h2>
-  <article>
-    <h3>Mô phỏng con lắc</h3>
-    <p>Python + Matplotlib, 2025.</p>
-  </article>
-  <article>
-    <h3>Đo nhiệt độ bằng Arduino</h3>
-    <p>C++ và cảm biến DS18B20.</p>
-  </article>
-  <!-- thêm article thứ 3 của bạn -->
-</section>
-<section id="contact">
-  <h2>Liên hệ</h2>
-  <form>
-    <label for="name">Họ tên</label>
-    <input id="name" name="name" required>
-    <label for="email">Email</label>
-    <input id="email" type="email"
-           name="email" required>
-    <label for="msg">Lời nhắn</label>
-    <textarea id="msg" name="msg"></textarea>
-    <button>Gửi</button>
-  </form>
-</section>
-</main>
-<footer>© 2026 Nguyễn Trung Kiên</footer>
+    <header class="site-header container">
+        <a class="logo" href="#">Nguyễn Trung Kiên</a>
+        <nav class="site-nav">
+            <ul>
+                <li><a href="#about">Giới thiệu</a></li>
+                <li><a href="#projects">Dự án</a></li>
+                <li><a href="#contact">Liên hệ</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="about" class="hero">
+            <h1>Nguyễn Trung Kiên</h1>
+            <p>Sinh viên Vật lý, thích làm web.</p>
+            <a class="button" href="#contact">Liên hệ</a>
+            <img src="me.jpg" alt="Ảnh chân dung Nguyễn Trung Kiên" class="full-width-img">
+        </section>
+        
+        <section id="projects">
+            <h2>Dự án</h2>
+            <div class="projects">
+                <article class="card">
+                    <h3>Mô phỏng con lắc</h3>
+                    <p>Python + Matplotlib, 2025.</p>
+                </article>
+                <article class="card">
+                    <h3>Đo nhiệt độ bằng Arduino</h3>
+                    <p>C++ và cảm biến DS18B20.</p>
+                </article>
+                <!-- Thêm article thứ 3 của bạn -->
+                <article class="card">
+                    <h3>Tên dự án thứ 3</h3>
+                    <p>Mô tả ngắn gọn về công cụ và năm thực hiện.</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Liên hệ</h2>
+            <form>
+                <label for="name">Họ tên</label>
+                <input id="name" name="name" required>
+                
+                <label for="email">Email</label>
+                <input id="email" type="email" name="email" required>
+                
+                <label for="msg">Lời nhắn</label>
+                <textarea id="msg" name="msg"></textarea>
+                
+                <button>Gửi</button>
+            </form>
+        </section>
+    </main>
+    <footer class="container">© 2026 Nguyễn Trung Kiên</footer>
 </body>
 </html>
