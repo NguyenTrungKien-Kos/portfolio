@@ -2,8 +2,8 @@
   box-sizing: border-box;
 }
 :root {
-  --color-bg: #ffffff;
-  --color-text: #1e293b;
+  --color-bg: #270d54;
+  --color-text: #f9f9f9;
   --color-accent: #0f766e;
   --space: 1rem;
   --font: system-ui, sans-serif;
