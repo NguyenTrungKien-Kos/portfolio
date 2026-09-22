@@ -1,1 +1,18 @@
-body { background: pink; }
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+:root {
+  --color-bg: #ffffff;
+  --color-text: #1e293b;
+  --color-accent: #0f766e;
+  --space: 1rem;
+  --font: system-ui, sans-serif;
+}
+body {
+  margin: 0;
+  font-family: var(--font);
+  line-height: 1.6;
+  color: var(--color-text);
+  background: var(--color-bg);
+}
+img { max-width: 100%; height: auto; }
