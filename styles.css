@@ -24,3 +24,30 @@ img { max-width: 100%; height: auto; }
   gap: var(--space);
   padding: var(--space);
 }
+site-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+a { color: inherit; }
+.site-header a { text-decoration: none; }
+.logo { font-weight: 700; }
+.full-width-img {
+  width: 100%;      
+  display: block;    
+  object-fit: cover; 
+}
+.site-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+a { color: inherit; }
+.site-header a { text-decoration: none; }
+.logo { font-weight: 700; }
