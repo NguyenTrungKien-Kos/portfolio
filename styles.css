@@ -65,16 +65,22 @@ align-items: center;
 padding-block: 3rem;
 }
 
+.hero-content {
+    padding-left: 1.5rem; 
+}
+
 .hero h1 {
 font-size: clamp(2rem, 5vw + 1rem, 3.5rem);
 line-height: 1.2;
 margin-top: 0;
+/* Thêm thuộc tính này để ép chữ luôn nằm trên 1 dòng, không bị rớt từ */
+white-space: nowrap; 
 }
 
-/* THÊM MỚI (PHỤC HỒI LẠI): Ép chia 2 cột trên màn hình lớn để chữ chỉ chiếm 1 nửa và thẳng hàng với card */
+/* Tăng không gian cho cột chứa chữ (1.2fr) thay vì chia đều (1fr 1fr) để chữ nowrap không bị tràn */
 @media (min-width: 48rem) {
     .hero { 
-        grid-template-columns: 1fr 1fr; 
+        grid-template-columns: 1.2fr 1fr; 
     }
 }
 
