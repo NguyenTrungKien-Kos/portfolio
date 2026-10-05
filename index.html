@@ -3,52 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nguyễn Trung Kiên</title>
+    <title>Nguyen Trung Kien Porfolio</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="Logo.png">
 </head>
 <body>
     <header class="site-header container">
-        <a class="logo" href="#">Nguyễn Trung Kiên</a>
+        <!-- Thay đổi href="#" thành href="/" hoặc href="index.html" -->
+        <a class="logo" href="/">Nguyen Trung Kien</a>
         <nav class="site-nav">
             <ul>
-                <li><a href="#about">Giới thiệu</a></li>
-                <li><a href="#projects">Dự án</a></li>
-                <li><a href="#contact">Liên hệ</a></li>
+                <li><a href="#about">Introduction</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
     </header>
     <main>
         <section id="about" class="hero">
-            <h1>Nguyễn Trung Kiên</h1>
-            <p>Sinh viên Vật lý, thích làm web.</p>
-            <a class="button" href="#contact">Liên hệ</a>
-            <img src="me.jpg" alt="Ảnh chân dung Nguyễn Trung Kiên" class="full-width-img">
+            <div class="hero-content">
+                <h1>Nguyen Trung Kien</h1>
+                <p>Welcome to my portfolio! I am Nguyen Trung Kien, a final-year Physics and Computer Science student at VNUHCM - University of Science. I'm passionate about building digital products that are both enjoyable and useful to people.</p>
+            </div>
         </section>
         
         <section id="projects">
-            <h2>Dự án</h2>
-            <div class="projects">
-                <article class="card">
-                    <h3>Mô phỏng con lắc</h3>
-                    <p>Python + Matplotlib, 2025.</p>
-                </article>
-                <article class="card">
-                    <h3>Đo nhiệt độ bằng Arduino</h3>
-                    <p>C++ và cảm biến DS18B20.</p>
-                </article>
-                <!-- Thêm article thứ 3 của bạn -->
-                <article class="card">
-                    <h3>Tên dự án thứ 3</h3>
-                    <p>Mô tả ngắn gọn về công cụ và năm thực hiện.</p>
-                </article>
-            </div>
+            <h2>Projects</h2>
+            <div id="filters"></div>
+            
+            <ul id="project-list" class="projects">
+            </ul>
+            
+            <template id="project-card">
+                <li class="card">
+                    <h3></h3>
+                    <p class="description"></p>
+                    <p class="tags"></p>
+                    <a class="project-link" href="#" target="_blank">
+                        <img class="project-img" src="" alt="">
+                    </a>
+                </li>
+            </template>
         </section>
 
-        <section id="contact">
-            <h2>Liên hệ</h2>
+        <section id="contact" class="container">
+            <h2>Contact</h2>
             <form>
                 <div class="field">
-                    <label for="name">Họ tên</label>
+                    <label for="name">Full name</label>
                     <input id="name" name="name" required>
                 </div>
                 <div class="field">
@@ -56,13 +58,15 @@
                     <input id="email" type="email" name="email" required>
                 </div>
                 <div class="field">
-                    <label for="msg">Lời nhắn</label>
-                    <textarea id="msg" name="msg"></textarea>
+                    <label for="msg">Message</label>
+                    <textarea id="msg" name="msg" rows="1"></textarea>
                 </div>
-                <button class="button">Gửi</button>
+                <button class="button">Send</button>
             </form>
         </section>
     </main>
-    <footer class="container">© 2026 Nguyễn Trung Kiên</footer>
+    <footer class="container">© 2026 Nguyen Trung Kien</footer>
+    
+    <script type="module" src="app.js"></script>
 </body>
 </html>

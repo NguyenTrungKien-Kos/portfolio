@@ -1,112 +1,183 @@
 *, *::before, *::after {
-  box-sizing: border-box;
+box-sizing: border-box;
 }
+
 :root {
-  --color-bg: #270d54;
-  --color-text: #f9f9f9;
-  --color-accent: #0f766e;
-  --space: 1rem;
-  --font: system-ui, sans-serif;
+--color-bg: #270d54;
+--color-text: #f9f9f9;
+--color-accent: #cb41c6;
+--space: 1rem;
+--font: system-ui, sans-serif;
 }
+
 body {
-  margin: 0;
-  font-family: var(--font);
-  line-height: 1.6;
-  color: var(--color-text);
-  background: var(--color-bg);
+margin: 0;
+font-family: var(--font);
+line-height: 1.6;
+color: var(--color-text);
+background-color: var(--color-bg);
+background-image: url('Kamen_Rider_Outsiders.jpg');
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+background-attachment: fixed;
 }
+
 img { max-width: 100%; height: auto; }
+
 .site-header {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space);
-  padding: var(--space);
+display: flex;
+flex-wrap: wrap;
+align-items: center;
+justify-content: space-between;
+gap: var(--space);
+padding: var(--space);
 }
-site-nav ul {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem 1.25rem;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-a { color: inherit; }
-.site-header a { text-decoration: none; }
-.logo { font-weight: 700; }
-.full-width-img {
-  width: 100%;      
-  display: block;    
-  object-fit: cover; 
-}
+
 .site-nav ul {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem 1.25rem;
-  margin: 0;
-  padding: 0;
-  list-style: none;
+display: flex;
+flex-wrap: wrap;
+gap: 0.5rem 1.25rem;
+margin: 0;
+padding: 0;
+list-style: none;
 }
+
 a { color: inherit; }
+
 .site-header a { text-decoration: none; }
+
 .logo { font-weight: 700; }
+
 .container {
-  max-width: 64rem;
-  margin-inline: auto;
-  padding-inline: var(--space);
+max-width: 64rem;
+margin-inline: auto;
+padding-inline: var(--space);
 }
+
+/* ==============================================
+CẤU HÌNH HERO SECTION (INTRODUCTION)
+============================================== */
 .hero {
-  display: grid;
-  gap: 2rem;
-  align-items: center;
-  padding-block: 3rem;
+display: grid;
+gap: var(--space);
+align-items: center;
+padding-block: 3rem;
 }
+
 .hero h1 {
-  font-size: clamp(2rem, 5vw + 1rem, 3.5rem);
-  line-height: 1.2;
+font-size: clamp(2rem, 5vw + 1rem, 3.5rem);
+line-height: 1.2;
+margin-top: 0;
 }
+
+/* THÊM MỚI (PHỤC HỒI LẠI): Ép chia 2 cột trên màn hình lớn để chữ chỉ chiếm 1 nửa và thẳng hàng với card */
 @media (min-width: 48rem) {
-  .hero { grid-template-columns: 2fr 1fr; }
+    .hero { 
+        grid-template-columns: 1fr 1fr; 
+    }
 }
+
+/* ==============================================
+CẤU HÌNH DỰ ÁN & THẺ (CARDS)
+============================================== */
 .projects {
-  display: grid;
-  grid-template-columns:
-    repeat(auto-fit, minmax(16rem, 1fr));
-  gap: var(--space);
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+gap: var(--space);
+list-style: none;
+padding: 0;
 }
+#projects h2 {
+    font-size: 2.5rem;      
+    text-align: center;     
+    margin-bottom: 2rem;    
+}
+
 .card {
-  padding: 1.5rem;
-  border: 1px solid #cbd5e1;
-  border-radius: 0.75rem;
-  background: var(--color-bg);
+    padding: 1.5rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 0.75rem;
+    background: rgba(27, 7, 61, 0.6); 
+    backdrop-filter: blur(1px); 
+    display: flex;
+    flex-direction: column;
 }
-.card h3 { margin-top: 0; }
+.project-link {
+margin-top: auto;
+display: block;
+border-radius: 0.5rem;
+overflow: hidden;
+}
+
+.project-img {
+width: 100%;
+aspect-ratio: 16 / 9;
+object-fit: cover;
+display: block;
+transition: transform 0.3s ease;
+}
+
+.project-link:hover .project-img {
+transform: scale(1.05);
+}
+
+.card h3, .card .description, .card .tags {
+padding: 0;
+margin: 0;
+}
+
+.card h3 {
+margin-bottom: 0.5rem;
+}
+
+.card .description {
+margin-bottom: 1rem;
+}
+
+/* ==============================================
+PHẦN CÒN LẠI (FORM, BUTTON, FOOTER)
+============================================== */
 .field {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-  margin-bottom: var(--space);
+display: flex;
+flex-direction: column;
+gap: 0.25rem;
+margin-bottom: var(--space);
 }
+
 input, textarea, button {
-  font: inherit;
+font: inherit;
 }
+
 input, textarea {
-  padding: 0.75rem;
-  border: 1px solid #64748b;
-  border-radius: 0.5rem;
+padding: 0.75rem;
+border: 1px solid #64748b;
+border-radius: 1rem;
+width: 100%;
+resize: none;
 }
+
 .button {
-  display: inline-block;
-  padding: 0.75rem 1.25rem;
-  border: 0;
-  border-radius: 0.5rem;
-  color: #ffffff;
-  background: var(--color-accent);
-  text-decoration: none;
-  cursor: pointer;
+display: inline-block;
+padding: 0.75rem 1.25rem;
+border: 0;
+border-radius: 0.5rem;
+color: #ffffff;
+background: var(--color-accent);
+text-decoration: none;
+cursor: pointer;
 }
+
 :focus-visible {
-  outline: 3px solid var(--color-accent);
-  outline-offset: 3px;
+outline: 3px solid var(--color-accent);
+outline-offset: 3px;
+}
+
+footer {
+text-align: center;
+padding-block: 2rem;
+}
+
+#contact form {
+width: 50%;
 }
