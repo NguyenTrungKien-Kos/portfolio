@@ -1,4 +1,4 @@
-import { projects } from './data.js';
+import { projects, songs } from './data.js';
 
 const ul = document.querySelector('#project-list');
 const tpl = document.querySelector('#project-card');
@@ -81,3 +81,92 @@ document.addEventListener('click', function(e) {
         }, 600);
     }
 });
+
+// ==============================================
+// MUSIC PLAYER LOGIC
+// ==============================================
+const carousel = document.querySelector('.carousel');
+const titleEl = document.getElementById('song-title');
+const playBtn = document.getElementById('play-btn');
+const prevBtn = document.getElementById('prev-btn');
+const nextBtn = document.getElementById('next-btn');
+const audioPlayer = document.getElementById('audio-player');
+
+let currentSongIndex = 0;
+let isPlaying = false;
+
+// Khởi tạo các thẻ ảnh banner
+function initMusicPlayer() {
+    if (!songs || songs.length === 0) return;
+    
+    songs.forEach((song, index) => {
+        const img = document.createElement('img');
+        img.src = song.cover;
+        img.className = 'song-card';
+        // Xử lý nếu ảnh lỗi để tránh trống layout
+        img.onerror = () => { img.src = 'https://via.placeholder.com/400x225/270d54/ffffff?text=No+Cover'; }; 
+        carousel.appendChild(img);
+    });
+    
+    updatePlayerUI();
+}
+
+// Cập nhật giao diện khi chuyển bài
+function updatePlayerUI() {
+    const cards = document.querySelectorAll('.song-card');
+    const totalSongs = songs.length;
+    
+    cards.forEach((card, index) => {
+        card.className = 'song-card'; // Xóa class cũ
+        
+        if (index === currentSongIndex) {
+            card.classList.add('active');
+        } else if (index === (currentSongIndex - 1 + totalSongs) % totalSongs) {
+            card.classList.add('prev');
+        } else if (index === (currentSongIndex + 1) % totalSongs) {
+            card.classList.add('next');
+        }
+    });
+
+    // Cập nhật thông tin và file nhạc
+    const currentSong = songs[currentSongIndex];
+    titleEl.textContent = `${currentSong.title} - ${currentSong.artist}`;
+    
+    // Chỉ đổi src nếu chuyển bài khác
+    if(!audioPlayer.src.includes(currentSong.audio)) {
+        audioPlayer.src = currentSong.audio;
+    }
+    
+    if (isPlaying) {
+        audioPlayer.play();
+        playBtn.innerHTML = '⏸'; // Đổi icon sang Pause
+    } else {
+        audioPlayer.pause();
+        playBtn.innerHTML = '▶'; // Đổi icon sang Play
+    }
+}
+
+// Bắt sự kiện nút bấm
+prevBtn.addEventListener('click', () => {
+    currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
+    updatePlayerUI();
+});
+
+nextBtn.addEventListener('click', () => {
+    currentSongIndex = (currentSongIndex + 1) % songs.length;
+    updatePlayerUI();
+});
+
+playBtn.addEventListener('click', () => {
+    isPlaying = !isPlaying;
+    updatePlayerUI();
+});
+
+// Tự động chuyển bài khi kết thúc
+audioPlayer.addEventListener('ended', () => {
+    currentSongIndex = (currentSongIndex + 1) % songs.length;
+    updatePlayerUI();
+});
+
+// Chạy khởi tạo
+initMusicPlayer();
