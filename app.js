@@ -1,48 +1,54 @@
-import { projects, songs } from './data.js';
+import { projects, songs, blogs } from './data.js'; 
 
-const ul = document.querySelector('#project-list');
-const tpl = document.querySelector('#project-card');
-
-function render(list) {
-  ul.textContent = '';
-  for (const p of list) {
-    const li = tpl.content.cloneNode(true);
+function renderList(list, ulElement, tplElement) {
+  ulElement.textContent = '';
+  for (const item of list) {
+    const li = tplElement.content.cloneNode(true);
     
-    // Tìm thẻ link và thẻ img
     const linkEl = li.querySelector('.project-link');
     const img = li.querySelector('.project-img');
     
-    if (p.image) {
-      img.src = p.image;
-      img.alt = `Banner cho dự án ${p.title}`;
+    if (item.image) {
+      img.src = item.image;
+      img.alt = `Banner cho ${item.title}`;
       
-      // Gán đường link nếu có
-      if (p.link) {
-          linkEl.href = p.link;
+      if (item.link) {
+          linkEl.href = item.link;
       } else {
-          linkEl.removeAttribute('href'); // Nếu không có link thì xóa thuộc tính href
+          linkEl.removeAttribute('href'); 
       }
     } else {
-      linkEl.style.display = 'none'; // Ẩn toàn bộ khối ảnh nếu dự án không có ảnh
+      if(linkEl) linkEl.style.display = 'none'; 
     }
 
-    li.querySelector('h3').textContent = p.title;
+    const titleEl = li.querySelector('h3');
+    if(titleEl) titleEl.textContent = item.title;
     
     const desc = li.querySelector('.description');
-    if(desc && p.description) desc.textContent = p.description; 
+    if(desc && item.description) desc.textContent = item.description; 
     
     const tagsEl = li.querySelector('.tags');
-    if (p.tags && tagsEl) {
-      tagsEl.textContent = p.tags.join(', ');
+    if (item.tags && tagsEl) {
+      tagsEl.textContent = item.tags.join(', ');
     } else if (tagsEl) {
       tagsEl.style.display = 'none'; 
     }
     
-    ul.append(li);
+    ulElement.append(li);
   }
 }
 
-render(projects);
+// 1. Chạy render cho phần Projects
+const projectUl = document.querySelector('#project-list');
+const projectTpl = document.querySelector('#project-card');
+renderList(projects, projectUl, projectTpl);
+
+// 2. Chạy render cho phần Blogs
+const blogUl = document.querySelector('#blog-list');
+const blogTpl = document.querySelector('#blog-card');
+if (blogUl && blogTpl) {
+    renderList(blogs, blogUl, blogTpl);
+}
 
 // ==============================================
 // HIỆU ỨNG CLICK CHUỘT (NEON SQUARES)
@@ -170,3 +176,43 @@ audioPlayer.addEventListener('ended', () => {
 
 // Chạy khởi tạo
 initMusicPlayer();
+
+// ==============================================
+// DRAG TO SCROLL (KÉO CHUỘT ĐỂ TRƯỢT BLOG)
+// ==============================================
+const slider = document.querySelector('.blog-carousel');
+let isDown = false; // Trạng thái có đang nhấn chuột hay không
+let startX;         // Vị trí X ban đầu khi click
+let scrollLeft;     // Vị trí cuộn ban đầu
+
+if (slider) {
+    // Khi nhấn chuột xuống
+    slider.addEventListener('mousedown', (e) => {
+        isDown = true;
+        slider.classList.add('active'); // Thêm class active để đổi con trỏ chuột (CSS)
+        startX = e.pageX - slider.offsetLeft; // Lấy tọa độ X của chuột
+        scrollLeft = slider.scrollLeft; // Lưu lại vị trí thanh cuộn hiện tại
+    });
+
+    // Khi di chuột ra khỏi khu vực blog
+    slider.addEventListener('mouseleave', () => {
+        isDown = false;
+        slider.classList.remove('active');
+    });
+
+    // Khi nhả chuột ra
+    slider.addEventListener('mouseup', () => {
+        isDown = false;
+        slider.classList.remove('active');
+    });
+
+    // Khi di chuyển chuột (và đang nhấn giữ)
+    slider.addEventListener('mousemove', (e) => {
+        if (!isDown) return; // Nếu không nhấn chuột thì bỏ qua
+        e.preventDefault(); // Ngăn hành vi mặc định (như kéo ảnh ra ngoài)
+        
+        const x = e.pageX - slider.offsetLeft; // Tọa độ X hiện tại
+        const walk = (x - startX) * 1.5; // Khoảng cách di chuyển (nhân 1.5 để cuộn nhanh hơn)
+        slider.scrollLeft = scrollLeft - walk; // Cập nhật vị trí thanh cuộn
+    });
+}

@@ -9,18 +9,17 @@
 </head>
 <body>
     <header class="site-header container">
-        <!-- Thay đổi href="#" thành href="/" hoặc href="index.html" -->
         <a class="logo" href="/">Nguyen Trung Kien</a>
         <nav class="site-nav">
             <ul>
                 <li><a href="#about">Introduction</a></li>
                 <li><a href="#projects">Projects</a></li>
+                <li><a href="#blog">Blog</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
     </header>
     <main>
-        <!-- Thêm class container vào đây để căn lề đồng bộ với header -->
         <section id="about" class="hero container">
             <div class="hero-content">
                 <h1>Nguyen Trung Kien</h1>
@@ -28,7 +27,6 @@
             </div>
         </section>
         
-        <!-- Thêm class container vào phần projects để tránh dính lề -->
         <section id="projects" class="container">
             <h2>Projects</h2>
             <div id="filters"></div>
@@ -48,12 +46,32 @@
             </template>
         </section>
 
+        <section id="blog" class="container">
+            <h2>Blog</h2>
+            
+            <div class="blog-carousel">
+                <ul id="blog-list" class="blogs">
+                </ul>
+            </div>
+            
+            <template id="blog-card">
+                <li class="card blog-item">
+                    <h3></h3>
+                    <p class="description"></p>
+                    <p class="tags"></p>
+                    <a class="project-link" href="#" target="_blank">
+                        <img class="project-img" src="" alt="">
+                    </a>
+                </li>
+            </template>
+        </section>
+
         <section id="music-player-section" class="container">
             <h2>Songs I like</h2>
             <div class="carousel-container">
                 <button id="prev-btn" class="nav-btn">◁</button>
                 <div class="carousel">
-                    <!-- Các banner bài hát sẽ được JS tạo tự động vào đây -->
+
                 </div>
                 <button id="next-btn" class="nav-btn">▷</button>
             </div>
