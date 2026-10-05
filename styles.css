@@ -187,3 +187,27 @@ padding-block: 2rem;
 #contact form {
 width: 50%;
 }
+
+/* ==============================================
+HIỆU ỨNG CLICK CHUỘT (NEON SQUARES)
+============================================== */
+.neon-square {
+    position: fixed; 
+    border: 2px solid #b72cfd; 
+    box-shadow: 0 0 8px #b72cfd, inset 0 0 4px #b72cfd; 
+    pointer-events: none; 
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    animation: explode 0.6s ease-out forwards;
+}
+
+@keyframes explode {
+    0% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(0.5);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty))) scale(1.2);
+    }
+}

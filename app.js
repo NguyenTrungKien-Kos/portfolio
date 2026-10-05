@@ -43,3 +43,41 @@ function render(list) {
 }
 
 render(projects);
+
+// ==============================================
+// HIỆU ỨNG CLICK CHUỘT (NEON SQUARES)
+// ==============================================
+document.addEventListener('click', function(e) {
+    // Số lượng ô vuông sinh ra ngẫu nhiên từ 4 đến 6 ô
+    const numSquares = Math.floor(Math.random() * 3) + 4;
+
+    for (let i = 0; i < numSquares; i++) {
+        const square = document.createElement('div');
+        square.className = 'neon-square';
+
+        // Tạo kích thước ngẫu nhiên từ 10px đến 25px
+        const size = Math.random() * 15 + 10;
+        square.style.width = `${size}px`;
+        square.style.height = `${size}px`;
+
+        // Đặt vị trí xuất hiện trùng với tọa độ click chuột
+        square.style.left = `${e.clientX}px`;
+        square.style.top = `${e.clientY}px`;
+
+        // Tính toán hướng bay ngẫu nhiên (trong khoảng -60px đến +60px)
+        const tx = (Math.random() - 0.5) * 120; 
+        const ty = (Math.random() - 0.5) * 120;
+        
+        // Truyền giá trị hướng bay vào biến CSS --tx và --ty để dùng trong @keyframes
+        square.style.setProperty('--tx', `${tx}px`);
+        square.style.setProperty('--ty', `${ty}px`);
+
+        // Thêm ô vuông vào màn hình
+        document.body.appendChild(square);
+
+        // Tự động xóa thẻ div sau 600ms
+        setTimeout(() => {
+            square.remove();
+        }, 600);
+    }
+});
